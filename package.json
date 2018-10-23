@@ -1,0 +1,21 @@
+{
+  "name": "ea",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:marlonicus/ea.git",
+  "author": "Marlon Huber-Smith <marlon.huber-smith@akqa.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "dependencies": {
+    "koa": "^2.6.1",
+    "koa-router": "^7.4.0",
+    "next": "^7.0.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "styled-components": "^4.0.2"
+  }
+}
