@@ -5,8 +5,8 @@ const Root = styled.div`
   color: white;
 `;
 
-const NavButton = ({ to, text }) => (
-  <Link href={to} as={Root}>
+const NavButton = ({ to, onClick, text }) => (
+  <Link href={to} onClick={onClick} as={Root}>
     { text }
   </Link>
 );
