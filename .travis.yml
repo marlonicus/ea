@@ -7,11 +7,11 @@ deploy:
   - provider: script # Run a custom deployment script which we will define below
     script: now --public --token $NOW_TOKEN
     skip_cleanup: true
-    # on:
-      # all_branches: true
-      # master: false
-  # - provider: script
-  #   script: now --public --token $NOW_TOKEN && now alias --token $NOW_TOKEN
-  #   skip_cleanup: true
-  #   on:
-  #     master: true
+    on:
+      all_branches: true
+      master: false
+  - provider: script
+    script: now --public --token $NOW_TOKEN && now alias --token $NOW_TOKEN
+    skip_cleanup: true
+    on:
+      master: true
