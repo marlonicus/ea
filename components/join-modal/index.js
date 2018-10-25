@@ -1,10 +1,12 @@
 import { JoinModalConsumer, JoinModalProvider } from "./context";
+import RoleChoice from "./ui/role-choice";
 import styled from "styled-components";
+import { withProps, withStateHandlers, compose, mapProps } from "recompose";
 
 const Root = styled.div`
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.2);
+  background: rgba(0, 0, 0, 0.2);
   position: fixed;
   top: 0;
   left: 0;
@@ -39,25 +41,36 @@ const SubmitButton = styled.button`
 
 const JoinModal = () => (
   <JoinModalConsumer>
-    { ({ isEnabled, hideLogin }) => isEnabled && (
-      <Root onClick={hideLogin}>
-        <Form onClick={(e)=>{e.preventDefault(); e.stopPropagation()}}>
-          <Label>Name</Label>
-          <Input type="text "/>
+    {({ isEnabled, hideLogin }) =>
+      isEnabled && (
+        <Root onClick={hideLogin}>
+          <Form
+            onClick={e => {
+              e.stopPropagation();
+            }}
+          >
+            <RoleChoice />
 
-          <Label>Email</Label>
-          <Input type="email"/>
+            <Label>Name</Label>
+            <Input type="text " />
 
-          <Label>Password</Label>
-          <Input type="password"/>
+            <Label>Email</Label>
+            <Input type="email" />
 
-          <Label>Confirm Password</Label>
-          <Input type="password"/>
+            <Label>Password</Label>
+            <Input type="password" />
 
-          <SubmitButton>Create account</SubmitButton>
-        </Form>
-      </Root>
-    ) }
+            <Label>Confirm Password</Label>
+            <Input type="password" />
+
+            <SubmitButton onClick={e => {
+              e.stopPropagation();
+              e.preventDefault();
+            }}>Create account</SubmitButton>
+          </Form>
+        </Root>
+      )
+    }
   </JoinModalConsumer>
 );
 
