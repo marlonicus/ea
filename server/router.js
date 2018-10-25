@@ -4,7 +4,7 @@ module.exports = ({ app }) => {
   const router = new Router();
   const handle = app.getRequestHandler();
 
-  router.get("/foobar", async ctx => {
+  router.get("/adduser", async ctx => {
     await app.render(ctx.req, ctx.res, "/b", ctx.query);
     ctx.respond = false;
   });
