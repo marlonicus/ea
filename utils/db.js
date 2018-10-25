@@ -1,7 +1,6 @@
 require("dotenv").config();
 
 const { MongoClient } = require("mongodb");
-const assert = require("assert");
 
 // Connection URL
 const url = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${
@@ -9,16 +8,13 @@ const url = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${
 }/${process.env.DB_NAME}`;
 
 module.exports = {
-  connect: callback => {
-    MongoClient.connect(
+  connect: async () => {
+    const client = await MongoClient.connect(
       url,
-      { useNewUrlParser: true },
-      (err, client) => {
-        assert.equal(null, err);
-        console.log("Connected successfully to server");
-        const db = client.db(process.env.DB_NAME);
-        callback({ client, db });
-      }
+      { useNewUrlParser: true }
     );
+    const db = client.db(process.env.DB_NAME);
+    console.log("Connected successfully to server");
+    return { client, db };
   }
 };

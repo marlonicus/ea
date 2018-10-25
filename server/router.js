@@ -1,11 +1,14 @@
 const Router = require("koa-router");
+const { connect } = require("../utils/db");
 
 module.exports = ({ app }) => {
   const router = new Router();
   const handle = app.getRequestHandler();
 
-  router.get("/adduser", async ctx => {
-    await app.render(ctx.req, ctx.res, "/b", ctx.query);
+  router.get("/create", async ctx => {
+    const { client, db } = await connect();
+    await db.collection("users").insert({ foo: "bar" });
+    await app.render(ctx.req, ctx.res, "/about", ctx.query);
     ctx.respond = false;
   });
 
