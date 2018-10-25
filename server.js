@@ -1,4 +1,5 @@
 const Koa = require("koa");
+const koaBodyParser = require("koa-bodyparser");
 const next = require("next");
 const router = require("./server/router");
 
@@ -8,6 +9,7 @@ const app = next({ dev });
 
 app.prepare().then(() => {
   const server = new Koa();
+  server.use(koaBodyParser());
   server.use(router({ app }));
   server.use(async (ctx, next) => {
     ctx.res.statusCode = 200;

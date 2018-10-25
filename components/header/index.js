@@ -5,24 +5,36 @@ import NavButton from "./nav-button";
 import { JoinModalConsumer } from "../join-modal/context";
 
 const Root = styled.header`
-  background: #333;
-  color: white;
-  height: 40px;
+  background: #ccc;
+  color: #333;
+  font-weight: 900;
+  ÷height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+`;
+
+const Group = styled.div`
   display: flex;
 `;
 
 const Header = () => (
   <JoinModalConsumer>
-    {({ showLogin }) => (
+    {({ showJoinModal }) => (
       <Root>
         <Logo />
-        <NavButton to="/scientists" text="Scientists" />
-        <NavButton to="/artists" text="Artists" />
-        <NavButton to="/jobs" text="Jobs" />
-        <NavButton to="/about" text="About" />
+        <Group>
+          <NavButton to="/scientists" text="Scientists" />
+          <NavButton to="/artists" text="Artists" />
+          <NavButton to="/jobs" text="Jobs" />
+          <NavButton to="/about" text="About" />
+        </Group>
 
-        <NavButton to="/login" text="Sign in" />
-        <NavButton onClick={showLogin} text="Create profile" />
+        <Group>
+          <NavButton to="/login" text="Sign in" />
+          <NavButton onClick={showJoinModal} text="Create profile" />
+        </Group>
       </Root>
     )}
   </JoinModalConsumer>

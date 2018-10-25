@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { withProps, withStateHandlers, compose, mapProps } from "recompose";
+import { mapProps } from "recompose";
 
 const RadioContainer = styled.div`
   display: flex;
@@ -33,37 +33,38 @@ const RadioInput = styled.input`
   }
 `;
 
-const withRadioSelection = withStateHandlers(
-  { role: "artist" },
-  { change: () => type => ({ role: type }) }
-);
+const Radio = mapProps(props => ({
+  onChange: props.onChange,
+  type: "radio",
+  checked: props.selectedRole === props.value,
+  id: props.value,
+  value: props.value
+}))(RadioInput);
 
-const Radio = compose(
-  withProps({ type: "radio" }),
-  mapProps(props => ({
-    ...props,
-    checked: props.role === props.value,
-    onChange: () => props.change(props.value),
-    id: props.value
-  }))
-)(RadioInput);
-
-const RadioButtonAndLabel = ({ value, onChange, selectedRole }) => (
+const RadioButtonAndLabel = ({ value, changeRole, selectedRole }) => (
   <>
-    <Radio value={value} change={onChange} role={selectedRole} />
-    <RadioLabel for={value}>{value}</RadioLabel>
+    <Radio
+      value={value}
+      onChange={() => changeRole(value)}
+      selectedRole={selectedRole}
+    />
+    <RadioLabel htmlFor={value}>{value}</RadioLabel>
   </>
 );
 
-const RoleChoice = withRadioSelection(({ role, change }) => (
+const RoleChoice = ({ selectedRole, changeRole }) => (
   <RadioContainer>
-    <RadioButtonAndLabel value="artist" onChange={change} selectedRole={role} />
+    <RadioButtonAndLabel
+      value="artist"
+      changeRole={changeRole}
+      selectedRole={selectedRole}
+    />
     <RadioButtonAndLabel
       value="scientist"
-      onChange={change}
-      selectedRole={role}
+      changeRole={changeRole}
+      selectedRole={selectedRole}
     />
   </RadioContainer>
-));
+);
 
 export default RoleChoice;

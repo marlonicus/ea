@@ -3,7 +3,12 @@ import styled from "styled-components";
 import Link from "../../link";
 
 const Root = styled.div`
-  color: white;
+  padding: 20px;
+  cursor: pointer;
+
+  :hover {
+    color: #111;
+  }
 `;
 
 const NavButton = ({ to, onClick, text }) => (

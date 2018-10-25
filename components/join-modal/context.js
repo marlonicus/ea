@@ -8,30 +8,32 @@ export class JoinModalProvider extends React.Component {
     super(props);
 
     this.state = {
-      isEnabled: false,
-      showLogin: bind(this.showLogin, this),
-      hideLogin: bind(this.hideLogin, this)
+      isShown: false,
+      showJoinModal: bind(this.showJoinModal, this),
+      hideJoinModal: bind(this.hideJoinModal, this)
     };
   }
 
-  showLogin() {
+  showJoinModal() {
     this.setState({
-      isEnabled: true
+      isShown: true
     });
   }
 
-  hideLogin() {
+  hideJoinModal() {
     this.setState({
-      isEnabled: false
+      isShown: false
     });
   }
 
   render() {
-    const { isEnabled, showLogin, hideLogin } = this.state;
+    const { isShown, showJoinModal, hideJoinModal } = this.state;
     const { children } = this.props;
 
     return (
-      <JoinModalContext.Provider value={{ isEnabled, showLogin, hideLogin }}>
+      <JoinModalContext.Provider
+        value={{ isShown, showJoinModal, hideJoinModal }}
+      >
         {children}
       </JoinModalContext.Provider>
     );

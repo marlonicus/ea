@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { withState } from "recompose";
 import { JoinModalConsumer } from "./context";
+import { postJson } from "../../utils/browser";
 import RoleChoice from "./ui/role-choice";
 
 const Root = styled.div`
@@ -39,34 +41,69 @@ const SubmitButton = styled.button`
   margin: 20px auto 0;
 `;
 
-const JoinModal = () => (
+const withInputs = withState("inputs", "changeInput", {
+  role: "artist",
+  name: "",
+  email: "",
+  password: "",
+  password2: ""
+});
+
+const submit = async ({ name, password, password2, email, role }) => {
+  const res = await postJson("/api/join", { name, password, email, role });
+  console.log("recieved:", res);
+};
+
+const JoinModal = ({ inputs, changeInput }) => (
   <JoinModalConsumer>
-    {({ isEnabled, hideLogin }) =>
-      isEnabled && (
-        <Root onClick={hideLogin}>
+    {({ isShown, hideJoinModal }) =>
+      isShown && (
+        <Root onClick={hideJoinModal}>
           <Form
             onClick={e => {
               e.stopPropagation();
             }}
           >
-            <RoleChoice />
+            <RoleChoice
+              changeRole={role => changeInput({ ...inputs, role })}
+              selectedRole={inputs.role}
+            />
 
             <Label>Name</Label>
-            <Input type="text " />
+            <Input
+              type="text"
+              onChange={ev => changeInput({ ...inputs, name: ev.target.value })}
+            />
 
             <Label>Email</Label>
-            <Input type="email" />
+            <Input
+              type="email"
+              onChange={ev =>
+                changeInput({ ...inputs, email: ev.target.value })
+              }
+            />
 
             <Label>Password</Label>
-            <Input type="password" />
+            <Input
+              type="password"
+              onChange={ev =>
+                changeInput({ ...inputs, password: ev.target.value })
+              }
+            />
 
             <Label>Confirm Password</Label>
-            <Input type="password" />
+            <Input
+              type="password"
+              onChange={ev =>
+                changeInput({ ...inputs, password2: ev.target.value })
+              }
+            />
 
             <SubmitButton
               onClick={e => {
                 e.stopPropagation();
                 e.preventDefault();
+                submit(inputs);
               }}
             >
               Create account
@@ -78,4 +115,4 @@ const JoinModal = () => (
   </JoinModalConsumer>
 );
 
-export default JoinModal;
+export default withInputs(JoinModal);
