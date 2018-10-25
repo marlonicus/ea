@@ -1,5 +1,6 @@
+import React from "react";
+import styled from "styled-components";
 import Link from "../../link";
-import styled from 'styled-components';
 
 const Root = styled.div`
   color: white;
@@ -7,7 +8,7 @@ const Root = styled.div`
 
 const NavButton = ({ to, onClick, text }) => (
   <Link href={to} onClick={onClick} as={Root}>
-    { text }
+    {text}
   </Link>
 );
 

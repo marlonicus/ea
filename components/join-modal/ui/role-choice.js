@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { withProps, withStateHandlers, compose, mapProps } from "recompose";
 
@@ -17,7 +18,7 @@ const RadioLabel = styled.label`
   vertical-align: middle;
   line-height: 60px;
   background: #ccc;
-  opacity:0.6;
+  opacity: 0.6;
   display: inline;
 `;
 
@@ -50,14 +51,18 @@ const Radio = compose(
 const RadioButtonAndLabel = ({ value, onChange, selectedRole }) => (
   <>
     <Radio value={value} change={onChange} role={selectedRole} />
-    <RadioLabel for={value} >{ value }</RadioLabel>
+    <RadioLabel for={value}>{value}</RadioLabel>
   </>
-)
+);
 
 const RoleChoice = withRadioSelection(({ role, change }) => (
   <RadioContainer>
     <RadioButtonAndLabel value="artist" onChange={change} selectedRole={role} />
-    <RadioButtonAndLabel value="scientist" onChange={change} selectedRole={role} />
+    <RadioButtonAndLabel
+      value="scientist"
+      onChange={change}
+      selectedRole={role}
+    />
   </RadioContainer>
 ));
 

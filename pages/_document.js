@@ -1,6 +1,6 @@
+import React from "react";
 import Document, { Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
-import Layout from "../components/layout";
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
@@ -14,7 +14,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <html>
+      <html lang="en">
         <Head>{this.props.styleTags}</Head>
         <body>
           <Main />

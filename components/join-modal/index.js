@@ -1,7 +1,7 @@
-import { JoinModalConsumer, JoinModalProvider } from "./context";
-import RoleChoice from "./ui/role-choice";
+import React from "react";
 import styled from "styled-components";
-import { withProps, withStateHandlers, compose, mapProps } from "recompose";
+import { JoinModalConsumer } from "./context";
+import RoleChoice from "./ui/role-choice";
 
 const Root = styled.div`
   width: 100vw;
@@ -63,10 +63,14 @@ const JoinModal = () => (
             <Label>Confirm Password</Label>
             <Input type="password" />
 
-            <SubmitButton onClick={e => {
-              e.stopPropagation();
-              e.preventDefault();
-            }}>Create account</SubmitButton>
+            <SubmitButton
+              onClick={e => {
+                e.stopPropagation();
+                e.preventDefault();
+              }}
+            >
+              Create account
+            </SubmitButton>
           </Form>
         </Root>
       )

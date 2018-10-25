@@ -1,8 +1,4 @@
-import styled, { css, createGlobalStyle } from 'styled-components';
+import React from "react";
 import Layout from "../components/layout";
 
-export default () => (
-  <Layout>
-    Welcome to the about page
-  </Layout>
-);
+export default () => <Layout>Welcome to the about page</Layout>;

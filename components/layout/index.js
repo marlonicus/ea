@@ -1,20 +1,16 @@
+import React from "react";
 import GlobalStyles from "../global-styles";
 import Header from "../header";
 import JoinModal from "../join-modal";
 import { JoinModalProvider } from "../join-modal/context";
-import React from "react";
 
-class Layout extends React.Component {
-  render () {
-    return (
-      <JoinModalProvider>
-        <GlobalStyles />
-        <Header />
-        <JoinModal />
-        { this.props.children }
-      </JoinModalProvider>
-    )
-  }
-}
+const Layout = ({ children }) => (
+  <JoinModalProvider>
+    <GlobalStyles />
+    <Header />
+    <JoinModal />
+    {children}
+  </JoinModalProvider>
+);
 
 export default Layout;

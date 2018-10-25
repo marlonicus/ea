@@ -1,32 +1,40 @@
 import React from "react";
+import { bind } from "ramda";
 
 const JoinModalContext = React.createContext();
 
 export class JoinModalProvider extends React.Component {
-  showLogin = () => {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isEnabled: false,
+      showLogin: bind(this.showLogin, this),
+      hideLogin: bind(this.hideLogin, this)
+    };
+  }
+
+  showLogin() {
     this.setState({
       isEnabled: true
-    })
+    });
   }
 
-  hideLogin = () => {
+  hideLogin() {
     this.setState({
       isEnabled: false
-    })
-  }
-
-  state = {
-    isEnabled: false,
-    showLogin: this.showLogin,
-    hideLogin: this.hideLogin
+    });
   }
 
   render() {
+    const { isEnabled, showLogin, hideLogin } = this.state;
+    const { children } = this.props;
+
     return (
-      <JoinModalContext.Provider value={this.state}>
-        { this.props.children }
+      <JoinModalContext.Provider value={{ isEnabled, showLogin, hideLogin }}>
+        {children}
       </JoinModalContext.Provider>
-    )
+    );
   }
 }
 
