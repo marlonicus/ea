@@ -1,3 +1,6 @@
+require("dotenv").config();
+global.fetch = require("node-fetch");
+
 const Koa = require("koa");
 const koaBodyParser = require("koa-bodyparser");
 const next = require("next");

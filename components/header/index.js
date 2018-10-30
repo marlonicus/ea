@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Logo from "../logo";
 import NavButton from "./nav-button";
-import { JoinModalConsumer } from "../join-modal/context";
+import { ModalsConsumer } from "../modals";
 
 const Root = styled.header`
   background: #ccc;
@@ -20,8 +20,8 @@ const Group = styled.div`
 `;
 
 const Header = () => (
-  <JoinModalConsumer>
-    {({ showJoinModal }) => (
+  <ModalsConsumer>
+    {({ showModal }) => (
       <Root>
         <Logo />
         <Group>
@@ -32,12 +32,12 @@ const Header = () => (
         </Group>
 
         <Group>
-          <NavButton to="/login" text="Sign in" />
-          <NavButton onClick={showJoinModal} text="Create profile" />
+          <NavButton onClick={() => showModal("login")} text="Sign in" />
+          <NavButton onClick={() => showModal("join")} text="Create profile" />
         </Group>
       </Root>
     )}
-  </JoinModalConsumer>
+  </ModalsConsumer>
 );
 
 export default Header;

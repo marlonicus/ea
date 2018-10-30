@@ -1,22 +1,12 @@
 const Router = require("koa-router");
-const { connect, hashPassword } = require("../utils/db");
+const join = require("./routes/join");
 
 module.exports = ({ app }) => {
   const router = new Router();
   const handle = app.getRequestHandler();
 
-  router.post("/api/join", async ctx => {
-    const { db } = await connect();
-    const { name, password, email, role } = ctx.request.body;
-    const { hash, salt } = await hashPassword(password);
-
-    // Add the user to the db, and recieve their unique id
-    await db
-      .collection("users")
-      .insertOne({ name, email, role, password: hash, salt });
-
-    ctx.body = { success: true };
-  });
+  router.post("/join", join.create);
+  router.get("/join-confirm/:username/:verificationcode", join.confirm);
 
   router.get("/create", async ctx => {
     await app.render(ctx.req, ctx.res, "/about", ctx.query);
