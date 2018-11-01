@@ -1,8 +1,8 @@
 import React from "react";
 import { withStateHandlers } from "recompose";
 import styled from "styled-components";
-import JoinModal from "./join";
-import LoginModal from "./login";
+import JoinContainer from "../../containers/join";
+import LoginContainer from "../../containers/login";
 
 const ModalsContext = React.createContext();
 
@@ -46,8 +46,8 @@ export const Modals = () => (
     {({ hideModal, currentModal }) =>
       currentModal ? (
         <Root onClick={hideModal}>
-          {currentModal === "join" && <JoinModal />}
-          {currentModal === "login" && <LoginModal />}
+          {currentModal === "join" && <JoinContainer />}
+          {currentModal === "login" && <LoginContainer />}
         </Root>
       ) : null
     }

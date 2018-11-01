@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { withState } from "recompose";
-import { postJson } from "../../../utils/browser";
+import RoleChoice from "./ui/role-choice";
 
 const Form = styled.form`
   width: 40vw;
@@ -34,21 +34,23 @@ const withInputs = withState("inputs", "changeInput", {
   password2: ""
 });
 
-const submit = async ({ name, password, password2, email, role }) => {
-  try {
-    const res = await postJson("/join", { name, password, email, role });
-    console.log("recieved:", res);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const JoinModal = ({ inputs, changeInput }) => (
+const JoinModal = ({ inputs, changeInput, onSubmit }) => (
   <Form
     onClick={e => {
       e.stopPropagation();
     }}
   >
+    <RoleChoice
+      changeRole={role => changeInput({ ...inputs, role })}
+      selectedRole={inputs.role}
+    />
+
+    <Label>Name</Label>
+    <Input
+      type="text"
+      onChange={ev => changeInput({ ...inputs, name: ev.target.value })}
+    />
+
     <Label>Email</Label>
     <Input
       type="email"
@@ -61,14 +63,20 @@ const JoinModal = ({ inputs, changeInput }) => (
       onChange={ev => changeInput({ ...inputs, password: ev.target.value })}
     />
 
+    <Label>Confirm Password</Label>
+    <Input
+      type="password"
+      onChange={ev => changeInput({ ...inputs, password2: ev.target.value })}
+    />
+
     <SubmitButton
       onClick={e => {
         e.stopPropagation();
         e.preventDefault();
-        submit(inputs);
+        onSubmit(inputs);
       }}
     >
-      Login
+      Create account
     </SubmitButton>
   </Form>
 );

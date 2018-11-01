@@ -13,8 +13,11 @@ module.exports = {
       url,
       { useNewUrlParser: true }
     );
+
     const db = client.db(process.env.DB_NAME);
+
     console.log("Connected successfully to server");
+
     return { client, db };
   }
 };
