@@ -1,41 +1,32 @@
 import React from "react";
-import styled from "styled-components";
+import { Box } from "@smooth-ui/core-sc";
 import Logo from "../logo";
 import NavButton from "./nav-button";
 import { ModalsConsumer } from "../modals";
 
-const Root = styled.header`
-  background: #ccc;
-  color: #333;
-  font-weight: 900;
-  ÷height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-`;
-
-const Group = styled.div`
-  display: flex;
-`;
-
 const Header = () => (
   <ModalsConsumer>
     {({ showModal }) => (
-      <Root>
+      <Box
+        as="header"
+        display="flex"
+        justifyContent="space-between"
+        backgroundColor="#ccc"
+      >
         <Logo />
-        <Group>
+
+        <Box display="flex">
           <NavButton to="/scientists" text="Scientists" />
           <NavButton to="/artists" text="Artists" />
           <NavButton to="/jobs" text="Jobs" />
           <NavButton to="/about" text="About" />
-        </Group>
+        </Box>
 
-        <Group>
+        <Box display="flex">
           <NavButton onClick={() => showModal("login")} text="Sign in" />
           <NavButton onClick={() => showModal("join")} text="Create profile" />
-        </Group>
-      </Root>
+        </Box>
+      </Box>
     )}
   </ModalsConsumer>
 );

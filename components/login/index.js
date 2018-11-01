@@ -1,63 +1,48 @@
 import React from "react";
-import styled from "styled-components";
-import { withState } from "recompose";
+import { FormGroup, Label, Input, Button } from "@smooth-ui/core-sc";
+import { Form } from "react-final-form";
+import { Field } from "react-final-form-html5-validation";
 
-const Form = styled.form`
-  width: 40vw;
-  background: white;
-  pointer-events: all;
-  padding: 20px;
-`;
-
-const Label = styled.label`
-  margin: 20px 0 10px;
-  display: block;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  margin: 0;
-`;
-
-const SubmitButton = styled.button`
-  padding: 10px 20px;
-  display: block;
-  margin: 20px auto 0;
-`;
-
-const withInputs = withState("inputs", "changeInput", {
-  email: "",
-  password: ""
-});
-
-const JoinModal = ({ inputs, changeInput, onSubmit }) => (
+const Login = ({ onSubmit }) => (
   <Form
-    onClick={e => {
-      e.stopPropagation();
-    }}
-  >
-    <Label>Email</Label>
-    <Input
-      type="email"
-      onChange={ev => changeInput({ ...inputs, email: ev.target.value })}
-    />
+    onSubmit={onSubmit}
+    render={({ handleSubmit }) => (
+      <form onSubmit={handleSubmit}>
+        <FormGroup>
+          <Label htmlFor="input-email">Email</Label>
+          <Field name="email">
+            {({ input }) => (
+              <Input
+                control
+                id="input-email"
+                placeholder="email@example.com"
+                {...input}
+              />
+            )}
+          </Field>
+        </FormGroup>
 
-    <Label>Password</Label>
-    <Input
-      type="password"
-      onChange={ev => changeInput({ ...inputs, password: ev.target.value })}
-    />
+        <FormGroup>
+          <Label htmlFor="input-password-2">Password</Label>
+          <Field name="password" type="password">
+            {({ input }) => (
+              <Input
+                control
+                id="input-password"
+                type="password"
+                placeholder="•••••••"
+                {...input}
+              />
+            )}
+          </Field>
+        </FormGroup>
 
-    <SubmitButton
-      onClick={e => {
-        e.stopPropagation();
-        e.preventDefault();
-        onSubmit(inputs);
-      }}
-    >
-      Login
-    </SubmitButton>
-  </Form>
+        <Button type="submit" mx="auto" display="block">
+          Login
+        </Button>
+      </form>
+    )}
+  />
 );
 
-export default withInputs(JoinModal);
+export default Login;

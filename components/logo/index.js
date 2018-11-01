@@ -1,13 +1,3 @@
-import React from "react";
-import styled from "styled-components";
-import Link from "../link";
-
-const Root = styled.h1``;
-
-const Logo = () => (
-  <Link href="/" as={Root}>
-    Logo
-  </Link>
-);
+const Logo = () => null;
 
 export default Logo;

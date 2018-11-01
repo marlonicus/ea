@@ -1,11 +1,13 @@
 import React from "react";
-import GlobalStyles from "../global-styles";
+import { globalStyle, createGlobalStyle } from "@smooth-ui/core-sc";
 import Header from "../header";
 import { ModalsProvider, Modals } from "../modals";
 
+const GlobalStyle = createGlobalStyle`${globalStyle()}`;
+
 const Layout = ({ children }) => (
   <ModalsProvider>
-    <GlobalStyles />
+    <GlobalStyle />
     <Header />
     <Modals />
     {children}

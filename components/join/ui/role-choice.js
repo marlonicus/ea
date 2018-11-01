@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { mapProps } from "recompose";
+import { Field } from "react-final-form";
 
 const RadioContainer = styled.div`
   display: flex;
@@ -33,37 +33,21 @@ const RadioInput = styled.input`
   }
 `;
 
-const Radio = mapProps(props => ({
-  onChange: props.onChange,
-  type: "radio",
-  checked: props.selectedRole === props.value,
-  id: props.value,
-  value: props.value
-}))(RadioInput);
-
-const RadioButtonAndLabel = ({ value, changeRole, selectedRole }) => (
-  <>
-    <Radio
-      value={value}
-      onChange={() => changeRole(value)}
-      selectedRole={selectedRole}
-    />
-    <RadioLabel htmlFor={value}>{value}</RadioLabel>
-  </>
+const RadioButtonAndLabel = ({ value }) => (
+  <Field name="role" value={value} type="radio" component="input">
+    {({ input }) => (
+      <>
+        <RadioInput id={value} {...input} type="radio" />
+        <RadioLabel htmlFor={value}>{value}</RadioLabel>
+      </>
+    )}
+  </Field>
 );
 
-const RoleChoice = ({ selectedRole, changeRole }) => (
+const RoleChoice = () => (
   <RadioContainer>
-    <RadioButtonAndLabel
-      value="artist"
-      changeRole={changeRole}
-      selectedRole={selectedRole}
-    />
-    <RadioButtonAndLabel
-      value="scientist"
-      changeRole={changeRole}
-      selectedRole={selectedRole}
-    />
+    <RadioButtonAndLabel value="artist" />
+    <RadioButtonAndLabel value="scientist" />
   </RadioContainer>
 );
 

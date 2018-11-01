@@ -1,6 +1,13 @@
 import React from "react";
 import { withStateHandlers } from "recompose";
-import styled from "styled-components";
+import {
+  Modal,
+  ModalDialog,
+  ModalBody,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton
+} from "@smooth-ui/core-sc";
 import JoinContainer from "../../containers/join";
 import LoginContainer from "../../containers/login";
 
@@ -28,28 +35,36 @@ export const ModalsProvider = enhance(
 
 export const ModalsConsumer = ModalsContext.Consumer;
 
-const Root = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.2);
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: visible;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+const ModalTypes = {
+  join: {
+    Body: JoinContainer,
+    title: "We just need to know a few things first..."
+  },
+
+  login: {
+    Body: LoginContainer,
+    title: "Welcome!"
+  }
+};
 
 export const Modals = () => (
   <ModalsConsumer>
-    {({ hideModal, currentModal }) =>
-      currentModal ? (
-        <Root onClick={hideModal}>
-          {currentModal === "join" && <JoinContainer />}
-          {currentModal === "login" && <LoginContainer />}
-        </Root>
-      ) : null
-    }
+    {({ hideModal, currentModal }) => {
+      const PickedModal = ModalTypes[currentModal];
+
+      return currentModal ? (
+        <Modal opened onClose={hideModal}>
+          <ModalDialog>
+            <ModalContent>
+              <ModalHeader>{PickedModal.title}</ModalHeader>
+              <ModalBody>
+                <PickedModal.Body />
+              </ModalBody>
+              <ModalCloseButton />
+            </ModalContent>
+          </ModalDialog>
+        </Modal>
+      ) : null;
+    }}
   </ModalsConsumer>
 );

@@ -4,11 +4,6 @@ module.exports = ({ app }) => {
   const router = new Router();
   const handle = app.getRequestHandler();
 
-  router.get("/about", async ctx => {
-    await app.render(ctx.req, ctx.res, "/about", ctx.query);
-    ctx.respond = false;
-  });
-
   router.get("/create-job", async ctx => {
     await app.render(ctx.req, ctx.res, "/create-job", ctx.query);
     ctx.respond = false;

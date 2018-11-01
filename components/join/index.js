@@ -1,84 +1,72 @@
 import React from "react";
-import styled from "styled-components";
-import { withState } from "recompose";
+import { FormGroup, Label, Input, Button } from "@smooth-ui/core-sc";
+import { Form } from "react-final-form";
+import { Field } from "react-final-form-html5-validation";
 import RoleChoice from "./ui/role-choice";
 
-const Form = styled.form`
-  width: 40vw;
-  background: white;
-  pointer-events: all;
-  padding: 20px;
-`;
-
-const Label = styled.label`
-  margin: 20px 0 10px;
-  display: block;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  margin: 0;
-`;
-
-const SubmitButton = styled.button`
-  padding: 10px 20px;
-  display: block;
-  margin: 20px auto 0;
-`;
-
-const withInputs = withState("inputs", "changeInput", {
-  role: "artist",
-  name: "",
-  email: "",
-  password: "",
-  password2: ""
-});
-
-const JoinModal = ({ inputs, changeInput, onSubmit }) => (
+const Join = ({ onSubmit }) => (
   <Form
-    onClick={e => {
-      e.stopPropagation();
-    }}
-  >
-    <RoleChoice
-      changeRole={role => changeInput({ ...inputs, role })}
-      selectedRole={inputs.role}
-    />
+    onSubmit={onSubmit}
+    render={({ values, handleSubmit }) => (
+      <form onSubmit={handleSubmit}>
+        <RoleChoice />
 
-    <Label>Name</Label>
-    <Input
-      type="text"
-      onChange={ev => changeInput({ ...inputs, name: ev.target.value })}
-    />
+        <FormGroup>
+          <Label htmlFor="input-name">Name</Label>
+          <Field name="name">
+            {({ input }) => (
+              <Input
+                control
+                id="input-name"
+                placeholder={
+                  values.role === "artist"
+                    ? "eg. Georgia O'Keeffe"
+                    : "eg. Ada Lovelace"
+                }
+                {...input}
+              />
+            )}
+          </Field>
+        </FormGroup>
 
-    <Label>Email</Label>
-    <Input
-      type="email"
-      onChange={ev => changeInput({ ...inputs, email: ev.target.value })}
-    />
+        <FormGroup>
+          <Label htmlFor="input-email">Email</Label>
+          <Field name="email">
+            {({ input }) => (
+              <Input
+                control
+                id="input-email"
+                placeholder="email@example.com"
+                {...input}
+              />
+            )}
+          </Field>
+        </FormGroup>
 
-    <Label>Password</Label>
-    <Input
-      type="password"
-      onChange={ev => changeInput({ ...inputs, password: ev.target.value })}
-    />
+        <FormGroup>
+          <Label htmlFor="input-password-2">Password</Label>
+          <Field name="password" type="password">
+            {({ input }) => (
+              <Input control id="input-password" type="password" {...input} />
+            )}
+          </Field>
+        </FormGroup>
 
-    <Label>Confirm Password</Label>
-    <Input
-      type="password"
-      onChange={ev => changeInput({ ...inputs, password2: ev.target.value })}
-    />
+        <FormGroup>
+          <Label htmlFor="input-password-2">Confirm Password</Label>
+          <Field name="password-2" type="password">
+            {({ input }) => (
+              <Input control id="input-password-2" type="password" {...input} />
+            )}
+          </Field>
+        </FormGroup>
 
-    <SubmitButton
-      onClick={e => {
-        e.stopPropagation();
-        e.preventDefault();
-        onSubmit(inputs);
-      }}
-    >
-      Create account
-    </SubmitButton>
-  </Form>
+        <Button type="submit" mx="auto" display="block">
+          Create account
+        </Button>
+      </form>
+    )}
+  />
 );
 
-export default withInputs(JoinModal);
+export default Join;
