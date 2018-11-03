@@ -7,14 +7,11 @@ import { signIn } from "../../utils/auth";
   handle responding to the success/failure of the login.
 */
 
-const loginHandler = async ({ email, password }) => {
-  const res = await signIn({
+const loginHandler = async ({ email, password }) =>
+  signIn({
     username: email,
     password
   });
-
-  console.log("Login sent: ", res);
-};
 
 const LoginContainer = () => <Login onSubmit={loginHandler} />;
 
