@@ -27,7 +27,9 @@
     "ramda": "^0.25.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "react-redux": "^5.1.0",
     "recompose": "^0.30.0",
+    "redux": "^4.0.1",
     "styled-components": "^4.0.2",
     "yup": "^0.26.6"
   },
