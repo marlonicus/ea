@@ -28,7 +28,7 @@ const signUpHandler = successHandler => async ({
   }
 };
 
-const JoinContainer = ({ successHandler }) => (
+const JoinContainer = ({ successHandler = () => {} }) => (
   <Join onSubmit={signUpHandler(successHandler)} />
 );
 

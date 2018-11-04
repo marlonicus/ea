@@ -37,7 +37,7 @@ export const ModalsConsumer = ModalsContext.Consumer;
 
 const ModalTypes = {
   join: {
-    Body: JoinContainer,
+    Body: renameProp("hideModal", "successHandler")(JoinContainer),
     title: "We just need to know a few things first..."
   },
 

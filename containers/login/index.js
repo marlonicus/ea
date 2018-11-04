@@ -21,7 +21,7 @@ const loginHandler = successHandler => async ({ email, password }) => {
   }
 };
 
-const LoginContainer = ({ successHandler }) => (
+const LoginContainer = ({ successHandler = () => {} }) => (
   <Login onSubmit={loginHandler(successHandler)} />
 );
 
