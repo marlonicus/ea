@@ -1,7 +1,6 @@
 import React from "react";
 import { FormGroup, Label, Input, Button } from "@smooth-ui/core-sc";
-import { Form } from "react-final-form";
-import { Field } from "react-final-form-html5-validation";
+import { Form, Field } from "formik";
 import RoleChoice from "./ui/role-choice";
 
 const Join = ({ onSubmit }) => (

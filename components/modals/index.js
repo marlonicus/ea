@@ -1,5 +1,5 @@
 import React from "react";
-import { withStateHandlers } from "recompose";
+import { withStateHandlers, renameProp } from "recompose";
 import {
   Modal,
   ModalDialog,
@@ -42,7 +42,7 @@ const ModalTypes = {
   },
 
   login: {
-    Body: LoginContainer,
+    Body: renameProp("hideModal", "successHandler")(LoginContainer),
     title: "Welcome!"
   }
 };
@@ -58,7 +58,7 @@ export const Modals = () => (
             <ModalContent>
               <ModalHeader>{PickedModal.title}</ModalHeader>
               <ModalBody>
-                <PickedModal.Body />
+                <PickedModal.Body hideModal={hideModal} />
               </ModalBody>
               <ModalCloseButton />
             </ModalContent>

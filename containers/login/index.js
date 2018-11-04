@@ -2,17 +2,27 @@ import React from "react";
 import Login from "../../components/login";
 import { signIn } from "../../utils/auth";
 
-/**
-  @TODO: This should handle validation of the form, and
-  handle responding to the success/failure of the login.
-*/
+const transformApiErrorsToObject = apiErrors => apiErrors.message;
 
-const loginHandler = async ({ email, password }) =>
-  signIn({
-    username: email,
-    password
-  });
+const loginHandler = successHandler => async ({ email, password }) => {
+  try {
+    await signIn({
+      username: email,
+      password
+    });
 
-const LoginContainer = () => <Login onSubmit={loginHandler} />;
+    successHandler();
+
+    return {
+      success: true
+    };
+  } catch (e) {
+    return transformApiErrorsToObject(e);
+  }
+};
+
+const LoginContainer = ({ successHandler }) => (
+  <Login onSubmit={loginHandler(successHandler)} />
+);
 
 export default LoginContainer;

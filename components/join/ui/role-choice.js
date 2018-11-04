@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Field } from "react-final-form";
+import { Field } from "formik";
 
 const RadioContainer = styled.div`
   display: flex;

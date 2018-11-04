@@ -10,30 +10,43 @@ const LoginSchema = Yup.object().shape({
   password: Yup.string().required("Required")
 });
 
+const EnhancedField = ({ setFieldValue, setFieldTouched, ...props }) => (
+  <Field
+    control
+    onChange={event => setFieldValue(props.name, event.currentTarget.value)}
+    onBlur={() => setFieldTouched(props.name)}
+    {...props}
+  />
+);
+
 const Login = ({ onSubmit }) => (
   <Formik
     initialValues={{
       email: "",
       password: ""
     }}
-    validateOnBlur
-    validateOnChange
     validationSchema={LoginSchema}
     onSubmit={async (values, actions) => {
-      // actions: { setSubmitting, setErrors, setStatus }
-      // await onSubmit(values);
+      actions.setStatus();
+      const res = await onSubmit(values);
+      if (res && res.success) {
+        return;
+      }
+      actions.setStatus(res);
       actions.setSubmitting(false);
     }}
   >
-    {({ isSubmitting }) => (
+    {({ isSubmitting, setFieldValue, setFieldTouched, status }) => (
       <Form>
         <FormGroup>
           <Label htmlFor="input-email">Email</Label>
-          <Field
+          <EnhancedField
             control
             name="email"
             id="input-email"
-            // component={Input}
+            setFieldValue={setFieldValue}
+            setFieldTouched={setFieldTouched}
+            component={Input}
             placeholder="email@example.com"
           />
           <ErrorMessage name="email" component={Alert} variant="warning" />
@@ -41,15 +54,20 @@ const Login = ({ onSubmit }) => (
 
         <FormGroup>
           <Label htmlFor="input-password">Password</Label>
-          <Field
+          <EnhancedField
             control
             name="password"
+            type="password"
             id="input-password"
+            setFieldValue={setFieldValue}
+            setFieldTouched={setFieldTouched}
             component={Input}
             placeholder="••••••••"
           />
           <ErrorMessage name="password" component={Alert} variant="warning" />
         </FormGroup>
+
+        {status && <Alert>{status}</Alert>}
 
         <Button type="submit" mx="auto" display="block" disabled={isSubmitting}>
           Login
