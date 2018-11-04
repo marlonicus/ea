@@ -1,36 +1,35 @@
 import React from "react";
-import { FormGroup, Label, Input, Button, Alert } from "@smooth-ui/core-sc";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { FormGroup, Label, Button, Alert } from "@smooth-ui/core-sc";
+import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import RoleChoice from "./ui/role-choice";
+import Field from "../form/field";
 
 const JoinSchema = Yup.object().shape({
   name: Yup.string()
-    .min(3, "Name too short")
+    .min(1, "Name too short")
     .required("Required"),
   email: Yup.string()
     .email("Invalid email")
     .required("Required"),
-  password: Yup.string().required("Required"),
+  password: Yup.string()
+    .required("Required")
+    .matches(/\d/, "Must contain at least one number")
+    .matches(/\W/, "Must contain at least one special character")
+    .min(8, "Too short"),
   "password-2": Yup.string()
     .oneOf([Yup.ref("password"), null], "The passwords don't match")
     .required("Required")
 });
 
-const EnhancedField = ({ setFieldValue, setFieldTouched, ...props }) => (
-  <Field
-    control
-    onChange={event => setFieldValue(props.name, event.currentTarget.value)}
-    onBlur={() => setFieldTouched(props.name)}
-    {...props}
-  />
-);
-
 const Join = ({ onSubmit }) => (
   <Formik
     initialValues={{
+      role: "artist",
       email: "",
-      password: ""
+      name: "",
+      password: "",
+      "password-2": ""
     }}
     validationSchema={JoinSchema}
     onSubmit={async (values, actions) => {
@@ -49,13 +48,12 @@ const Join = ({ onSubmit }) => (
 
         <FormGroup>
           <Label htmlFor="input-name">Name</Label>
-          <EnhancedField
-            control
+          <Field
             name="name"
             id="input-name"
             setFieldValue={setFieldValue}
             setFieldTouched={setFieldTouched}
-            component={Input}
+            isSubmitting={isSubmitting}
             placeholder={
               values.role === "artist"
                 ? "eg. Georgia O'Keeffe"
@@ -67,13 +65,12 @@ const Join = ({ onSubmit }) => (
 
         <FormGroup>
           <Label htmlFor="input-email">Email</Label>
-          <EnhancedField
-            control
+          <Field
             name="email"
             id="input-email"
             setFieldValue={setFieldValue}
             setFieldTouched={setFieldTouched}
-            component={Input}
+            isSubmitting={isSubmitting}
             placeholder="email@example.com"
           />
           <ErrorMessage name="email" component={Alert} variant="warning" />
@@ -81,14 +78,13 @@ const Join = ({ onSubmit }) => (
 
         <FormGroup>
           <Label htmlFor="input-password">Password</Label>
-          <EnhancedField
-            control
+          <Field
             name="password"
             type="password"
             id="input-password"
             setFieldValue={setFieldValue}
             setFieldTouched={setFieldTouched}
-            component={Input}
+            isSubmitting={isSubmitting}
             placeholder="••••••••"
           />
           <ErrorMessage name="password" component={Alert} variant="warning" />
@@ -96,21 +92,22 @@ const Join = ({ onSubmit }) => (
 
         <FormGroup>
           <Label htmlFor="input-password-2">Confirm password</Label>
-          <EnhancedField
-            control
+          <Field
             name="password-2"
             type="password"
             id="input-password-2"
             setFieldValue={setFieldValue}
             setFieldTouched={setFieldTouched}
-            component={Input}
+            isSubmitting={isSubmitting}
             placeholder="••••••••"
           />
           <ErrorMessage name="password-2" component={Alert} variant="warning" />
         </FormGroup>
 
-        <Button type="submit" mx="auto" display="block">
-          Create account
+        {status && <Alert>{status}</Alert>}
+
+        <Button type="submit" mx="auto" display="block" disabled={isSubmitting}>
+          {isSubmitting ? "Loading" : "Create account"}
         </Button>
       </Form>
     )}

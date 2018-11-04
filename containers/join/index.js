@@ -2,22 +2,34 @@ import React from "react";
 import Join from "../../components/join";
 import { signUp } from "../../utils/auth";
 
-/**
-  @TODO: This should handle validation of the form, and
-  handle responding to the success/failure of the sign up.
-*/
+const transformApiErrorsToObject = apiErrors => apiErrors.message;
 
-const signUpHandler = async ({ email, name, password, role }) => {
-  const res = await signUp({
-    username: email,
-    password,
-    name,
-    role
-  });
+const signUpHandler = successHandler => async ({
+  email,
+  name,
+  password,
+  role
+}) => {
+  try {
+    await signUp({
+      username: email,
+      password,
+      name,
+      role
+    });
 
-  console.log("Sign up sent: ", res);
+    successHandler();
+
+    return {
+      success: true
+    };
+  } catch (e) {
+    return transformApiErrorsToObject(e);
+  }
 };
 
-const JoinContainer = () => <Join onSubmit={signUpHandler} />;
+const JoinContainer = ({ successHandler }) => (
+  <Join onSubmit={signUpHandler(successHandler)} />
+);
 
 export default JoinContainer;

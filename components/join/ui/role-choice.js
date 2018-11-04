@@ -35,9 +35,14 @@ const RadioInput = styled.input`
 
 const RadioButtonAndLabel = ({ value }) => (
   <Field name="role" value={value} type="radio" component="input">
-    {({ input }) => (
+    {({ field, form }) => (
       <>
-        <RadioInput id={value} {...input} type="radio" />
+        <RadioInput
+          id={value}
+          {...field}
+          defaultChecked={form.initialValues.role === value}
+          type="radio"
+        />
         <RadioLabel htmlFor={value}>{value}</RadioLabel>
       </>
     )}

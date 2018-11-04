@@ -1,7 +1,8 @@
 import React from "react";
-import { FormGroup, Label, Input, Button, Alert } from "@smooth-ui/core-sc";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { FormGroup, Label, Button, Alert } from "@smooth-ui/core-sc";
+import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import Field from "../form/field";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -9,15 +10,6 @@ const LoginSchema = Yup.object().shape({
     .required("Required"),
   password: Yup.string().required("Required")
 });
-
-const EnhancedField = ({ setFieldValue, setFieldTouched, ...props }) => (
-  <Field
-    control
-    onChange={event => setFieldValue(props.name, event.currentTarget.value)}
-    onBlur={() => setFieldTouched(props.name)}
-    {...props}
-  />
-);
 
 const Login = ({ onSubmit }) => (
   <Formik
@@ -40,13 +32,11 @@ const Login = ({ onSubmit }) => (
       <Form>
         <FormGroup>
           <Label htmlFor="input-email">Email</Label>
-          <EnhancedField
-            control
+          <Field
             name="email"
             id="input-email"
             setFieldValue={setFieldValue}
             setFieldTouched={setFieldTouched}
-            component={Input}
             placeholder="email@example.com"
           />
           <ErrorMessage name="email" component={Alert} variant="warning" />
@@ -54,14 +44,12 @@ const Login = ({ onSubmit }) => (
 
         <FormGroup>
           <Label htmlFor="input-password">Password</Label>
-          <EnhancedField
-            control
+          <Field
             name="password"
             type="password"
             id="input-password"
             setFieldValue={setFieldValue}
             setFieldTouched={setFieldTouched}
-            component={Input}
             placeholder="••••••••"
           />
           <ErrorMessage name="password" component={Alert} variant="warning" />
@@ -70,7 +58,7 @@ const Login = ({ onSubmit }) => (
         {status && <Alert>{status}</Alert>}
 
         <Button type="submit" mx="auto" display="block" disabled={isSubmitting}>
-          Login
+          {isSubmitting ? "Loading" : "Login"}
         </Button>
       </Form>
     )}
