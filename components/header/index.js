@@ -3,7 +3,7 @@ import { Box } from "@smooth-ui/core-sc";
 import Logo from "../logo";
 import NavButton from "./nav-button";
 
-const Header = ({ onLoginClick, onJoinClick, isLoggedIn }) => (
+const Header = ({ onLoginClick, onJoinClick, onLogoutClick, isLoggedIn }) => (
   <Box
     as="header"
     display="flex"
@@ -21,9 +21,11 @@ const Header = ({ onLoginClick, onJoinClick, isLoggedIn }) => (
 
     {isLoggedIn === "unknown" && <p>Loading</p>}
 
-    {isLoggedIn === false && <p>Logged in!</p>}
-
     {isLoggedIn === true && (
+      <NavButton onClick={onLogoutClick} text="Sign out" />
+    )}
+
+    {isLoggedIn === false && (
       <Box display="flex">
         <NavButton onClick={onLoginClick} text="Sign in" />
         <NavButton onClick={onJoinClick} text="Create profile" />

@@ -21,5 +21,7 @@ module.exports = {
       }
     }),
 
-  signIn: ({ username, password }) => Auth.signIn(username, password)
+  signIn: ({ username, password }) => Auth.signIn(username, password),
+
+  signOut: () => Auth.signOut()
 };
