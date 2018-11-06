@@ -11,7 +11,7 @@
     "AWS_ACCESS_KEY_ID": "@aws-key-id",
     "AWS_ACCESS_SECRET": "@aws-access-secret",
 
-    "API_HOST": "http://localhost:3000",
+    "API_HOST": "https://explainartist.now.sh",
     "AWS_COGNITO_APP_CLIENT_ID": "5l3p4n23hlt1eg83lcjoats0gs",
     "AWS_COGNITO_POOL_ID": "eu-central-1_P2lKQyYXO",
     "AWS_COGNITO_REGION": "eu-central-1"
