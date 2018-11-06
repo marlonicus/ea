@@ -11,10 +11,10 @@ const Jobs = ({ jobs }) => (
         <>
           {map(
             ({ title, description }) => (
-              <>
+              <div key={title}>
                 <h2>{title}</h2>
                 <p>{description}</p>
-              </>
+              </div>
             ),
             jobs
           )}
@@ -27,7 +27,7 @@ const Jobs = ({ jobs }) => (
   </Layout>
 );
 
-Jobs.getInitialProps = async ({}) => {
+Jobs.getInitialProps = async () => {
   const jobs = await fetch("http://localhost:3000/api/jobs");
   const json = await jobs.json();
   return { jobs: json };

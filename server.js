@@ -1,5 +1,7 @@
+/* eslint-disable no-console */
+
+require("isomorphic-fetch");
 require("dotenv").config();
-global.fetch = require("node-fetch");
 
 const Koa = require("koa");
 const koaBodyParser = require("koa-bodyparser");
@@ -14,9 +16,9 @@ app.prepare().then(() => {
   const server = new Koa();
   server.use(koaBodyParser());
   server.use(router({ app }));
-  server.use(async (ctx, next) => {
+  server.use(async (ctx, nextFn) => {
     ctx.res.statusCode = 200;
-    await next();
+    await nextFn();
   });
   server.listen(port, () => {
     console.log(`> Ready on http://localhost:${port}`);

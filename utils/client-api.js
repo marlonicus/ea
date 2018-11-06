@@ -3,7 +3,7 @@ export const createJob = async ({ title, description, loggedInUser }) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json; charset=utf-8",
-      "x-ea-auth": loggedInUser.signInUserSession.accessToken.jwtToken
+      "x-ea-auth": loggedInUser.signInUserSession.idToken.jwtToken
     },
     body: JSON.stringify({ title, description })
   });
