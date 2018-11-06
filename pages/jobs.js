@@ -28,7 +28,7 @@ const Jobs = ({ jobs }) => (
 );
 
 Jobs.getInitialProps = async () => {
-  const jobs = await fetch("http://localhost:3000/api/jobs");
+  const jobs = await fetch(`${process.env.API_HOST}/api/jobs`);
   const json = await jobs.json();
   return { jobs: json };
 };

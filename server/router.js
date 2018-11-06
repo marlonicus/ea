@@ -1,33 +1,21 @@
 const Router = require("koa-router");
-const { pathOr } = require("ramda");
-const { connect } = require("../utils/db");
-const { verify } = require("../utils/jwt");
+const jobs = require("./routes/jobs");
+const scientists = require("./routes/scientists");
 
 module.exports = ({ app }) => {
   const router = new Router();
   const handle = app.getRequestHandler();
 
   router.post("/api/jobs", async ctx => {
-    const validator = ({ "custom:role": role }) => role === "scientist";
-    const token = pathOr("", ["request", "header", "x-ea-auth"], ctx);
-    try {
-      await verify({ token, validator });
-      const { title, description } = ctx.request.body;
-      const { db } = await connect();
-      await db.collection("jobs").insertOne({ title, description });
-      ctx.body = "Job posted";
-    } catch (e) {
-      ctx.body = "Fail";
-    }
+    ctx.body = await jobs.post({ ctx });
   });
 
   router.get("/api/jobs", async ctx => {
-    const { db } = await connect();
-    const res = await db
-      .collection("jobs")
-      .find()
-      .toArray();
-    ctx.body = res;
+    ctx.body = await jobs.get();
+  });
+
+  router.get("/api/scientists", async ctx => {
+    ctx.body = await scientists.get();
   });
 
   router.get("*", async ctx => {

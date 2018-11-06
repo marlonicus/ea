@@ -1,10 +1,9 @@
 import React from "react";
-import { FormGroup, Label, Button, Alert } from "@smooth-ui/core-sc";
-import { Formik, Form, ErrorMessage } from "formik";
+import { Button, Alert } from "@smooth-ui/core-sc";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import EnhancedFormGroup from "../form/group";
 import RoleChoice from "./ui/role-choice";
-import Field from "../form/field";
 
 const JoinSchema = Yup.object().shape({
   name: Yup.string()

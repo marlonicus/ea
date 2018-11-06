@@ -8,7 +8,7 @@ const Header = ({ onLoginClick, onJoinClick, onLogoutClick, isLoggedIn }) => (
     as="header"
     display="flex"
     justifyContent="space-between"
-    backgroundColor="#ccc"
+    borderBottom="black"
   >
     <Logo />
 

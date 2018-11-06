@@ -10,7 +10,9 @@ const { reduce } = require("ramda");
 const envVars = [
   "AWS_COGNITO_APP_CLIENT_ID",
   "AWS_COGNITO_POOL_ID",
-  "AWS_COGNITO_REGION"
+  "AWS_COGNITO_REGION",
+
+  "API_HOST"
 ];
 
 module.exports = reduce(

@@ -1,18 +1,10 @@
 import React from "react";
-import styled from "styled-components";
+import { Button } from "@smooth-ui/core-sc";
 import Link from "../../link";
-
-const Root = styled.div`
-  padding: 20px;
-  cursor: pointer;
-
-  :hover {
-    color: #111;
-  }
-`;
+import { withProps } from "recompose";
 
 const NavButton = ({ to, onClick, text }) => (
-  <Link href={to} onClick={onClick} as={Root}>
+  <Link href={to} onClick={onClick} as={Button}>
     {text}
   </Link>
 );
