@@ -5,13 +5,13 @@ script: echo Deploying EA
 before_deploy: npm install now --no-save # Install Now CLI on Travis
 deploy:
   - provider: script # Run a custom deployment script which we will define below
-    script: now --public --token $NOW_TOKEN
+    script: now --public --token $NOW_TOKEN && now alias explainartist --token $NOW_TOKEN
     skip_cleanup: true
     on:
       master: true
       # all_branches: true
   # - provider: script
-    # script: now --public --token $NOW_TOKEN && now alias --token $NOW_TOKEN
-    # skip_cleanup: true
-    # on:
-    #   master: true
+  # script: now --public --token $NOW_TOKEN && now alias --token $NOW_TOKEN
+  # skip_cleanup: true
+  # on:
+  #   master: true
