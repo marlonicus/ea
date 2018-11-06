@@ -2,6 +2,7 @@ import React from "react";
 import { FormGroup, Label, Button, Alert } from "@smooth-ui/core-sc";
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import EnhancedFormGroup from "../form/group";
 import RoleChoice from "./ui/role-choice";
 import Field from "../form/field";
 
@@ -46,63 +47,47 @@ const Join = ({ onSubmit }) => (
       <Form>
         <RoleChoice />
 
-        <FormGroup>
-          <Label htmlFor="input-name">Name</Label>
-          <Field
-            name="name"
-            id="input-name"
-            setFieldValue={setFieldValue}
-            setFieldTouched={setFieldTouched}
-            isSubmitting={isSubmitting}
-            placeholder={
-              values.role === "artist"
-                ? "eg. Georgia O'Keeffe"
-                : "eg. Ada Lovelace"
-            }
-          />
-          <ErrorMessage name="name" component={Alert} variant="warning" />
-        </FormGroup>
+        <EnhancedFormGroup
+          name="name"
+          label="Name"
+          setFieldValue={setFieldValue}
+          setFieldTouched={setFieldTouched}
+          placeholder={
+            values.role === "artist"
+              ? "eg. Georgia O'Keeffe"
+              : "eg. Ada Lovelace"
+          }
+          disabled={isSubmitting}
+        />
 
-        <FormGroup>
-          <Label htmlFor="input-email">Email</Label>
-          <Field
-            name="email"
-            id="input-email"
-            setFieldValue={setFieldValue}
-            setFieldTouched={setFieldTouched}
-            isSubmitting={isSubmitting}
-            placeholder="email@example.com"
-          />
-          <ErrorMessage name="email" component={Alert} variant="warning" />
-        </FormGroup>
+        <EnhancedFormGroup
+          name="email"
+          label="Email address"
+          setFieldValue={setFieldValue}
+          setFieldTouched={setFieldTouched}
+          placeholder="email@example.com"
+          disabled={isSubmitting}
+        />
 
-        <FormGroup>
-          <Label htmlFor="input-password">Password</Label>
-          <Field
-            name="password"
-            type="password"
-            id="input-password"
-            setFieldValue={setFieldValue}
-            setFieldTouched={setFieldTouched}
-            isSubmitting={isSubmitting}
-            placeholder="••••••••"
-          />
-          <ErrorMessage name="password" component={Alert} variant="warning" />
-        </FormGroup>
+        <EnhancedFormGroup
+          name="password"
+          type="password"
+          label="Password"
+          setFieldValue={setFieldValue}
+          setFieldTouched={setFieldTouched}
+          placeholder="••••••••"
+          disabled={isSubmitting}
+        />
 
-        <FormGroup>
-          <Label htmlFor="input-password-2">Confirm password</Label>
-          <Field
-            name="password-2"
-            type="password"
-            id="input-password-2"
-            setFieldValue={setFieldValue}
-            setFieldTouched={setFieldTouched}
-            isSubmitting={isSubmitting}
-            placeholder="••••••••"
-          />
-          <ErrorMessage name="password-2" component={Alert} variant="warning" />
-        </FormGroup>
+        <EnhancedFormGroup
+          name="password-2"
+          type="password"
+          label="Confirm password"
+          setFieldValue={setFieldValue}
+          setFieldTouched={setFieldTouched}
+          placeholder="••••••••"
+          disabled={isSubmitting}
+        />
 
         {status && <Alert>{status}</Alert>}
 

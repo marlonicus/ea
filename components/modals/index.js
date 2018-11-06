@@ -1,5 +1,6 @@
 import React from "react";
 import { withStateHandlers, renameProp } from "recompose";
+
 import {
   Modal,
   ModalDialog,
@@ -8,8 +9,10 @@ import {
   ModalHeader,
   ModalCloseButton
 } from "@smooth-ui/core-sc";
+
 import JoinContainer from "../../containers/join";
 import LoginContainer from "../../containers/login";
+import CreateJobContainer from "../../containers/create-job";
 
 const ModalsContext = React.createContext();
 
@@ -44,6 +47,11 @@ const ModalTypes = {
   login: {
     Body: renameProp("hideModal", "successHandler")(LoginContainer),
     title: "Welcome!"
+  },
+
+  "create-job": {
+    Body: renameProp("hideModal", "successHandler")(CreateJobContainer),
+    title: "Add a new job"
   }
 };
 

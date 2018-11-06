@@ -28,6 +28,7 @@ class PageContainer extends React.Component {
     const { dispatch } = this.props;
     try {
       const currentUser = await Auth.currentAuthenticatedUser();
+
       dispatch({
         type: "LOGGED_IN",
         payload: currentUser

@@ -4,20 +4,23 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import EnhancedFormGroup from "../form/group";
 
-const LoginSchema = Yup.object().shape({
-  email: Yup.string()
-    .email("Invalid email")
-    .required("Required"),
-  password: Yup.string().required("Required")
+const CreateJobSchema = Yup.object().shape({
+  title: Yup.string()
+    .min(3, "Try and be a little more descriptive here")
+    .required("Your project neeeds a title"),
+
+  description: Yup.string()
+    .min(3, "Try and be a little more descriptive here")
+    .required("Your project neeeds a description")
 });
 
-const Login = ({ onSubmit }) => (
+const CreateJob = ({ onSubmit }) => (
   <Formik
     initialValues={{
-      email: "",
-      password: ""
+      title: "",
+      description: ""
     }}
-    validationSchema={LoginSchema}
+    validationSchema={CreateJobSchema}
     onSubmit={async (values, actions) => {
       actions.setStatus();
       const res = await onSubmit(values);
@@ -31,32 +34,31 @@ const Login = ({ onSubmit }) => (
     {({ isSubmitting, setFieldValue, setFieldTouched, status }) => (
       <Form>
         <EnhancedFormGroup
-          name="email"
-          label="Email address"
+          name="title"
+          label="Title"
           setFieldValue={setFieldValue}
           setFieldTouched={setFieldTouched}
-          placeholder="email@example.com"
+          placeholder="The name of your project"
           disabled={isSubmitting}
         />
 
         <EnhancedFormGroup
-          name="password"
-          type="password"
-          label="Password"
+          name="description"
+          label="Description of scope"
           setFieldValue={setFieldValue}
           setFieldTouched={setFieldTouched}
-          placeholder="••••••••"
+          placeholder=""
           disabled={isSubmitting}
         />
 
         {status && <Alert>{status}</Alert>}
 
         <Button type="submit" mx="auto" display="block" disabled={isSubmitting}>
-          {isSubmitting ? "Loading" : "Login"}
+          {isSubmitting ? "Loading" : "Post job"}
         </Button>
       </Form>
     )}
   </Formik>
 );
 
-export default Login;
+export default CreateJob;
