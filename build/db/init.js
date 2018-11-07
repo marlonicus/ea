@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("now-env");
 
 const { init, db, client } = require("../../utils/db");
 

@@ -1,7 +1,10 @@
 /* eslint-disable no-console */
 
+if (process.env.NODE_ENV !== "production") {
+  require("now-env"); // eslint-disable-line global-require
+}
+
 require("isomorphic-fetch");
-require("dotenv").config();
 
 const Koa = require("koa");
 const koaBodyParser = require("koa-bodyparser");

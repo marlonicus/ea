@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
 require("isomorphic-fetch");
-require("dotenv").config();
+require("now-env");
 
 const fs = require("fs");
 

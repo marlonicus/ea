@@ -4,7 +4,7 @@
   ...Try not to expose the wrong things :)
 */
 
-require("dotenv").config();
+require("now-env");
 const { reduce } = require("ramda");
 
 const envVars = [
