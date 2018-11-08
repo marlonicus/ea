@@ -13,7 +13,7 @@ const transformCognitoUsers = pipe(
   prop("Users"),
   map(prop("Attributes")),
 
-  // only get scientists
+  // Only get scientists
   filter(
     contains({
       Name: "custom:role",
