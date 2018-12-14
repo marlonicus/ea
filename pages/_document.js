@@ -15,7 +15,19 @@ export default class MyDocument extends Document {
   render() {
     return (
       <html lang="en">
-        <Head>{this.props.styleTags}</Head>
+        <Head>
+          {this.props.styleTags}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              console.log("MARLON");
+              /* ${process.env.EA_AWS_ACCESS_KEY_ID} */
+              /* ${process.env.AWS_COGNITO_POOL_ID} */
+              /* ${process.env.API_HOST} */
+            `
+            }}
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />
