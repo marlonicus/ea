@@ -4,6 +4,8 @@ import { Provider } from "react-redux";
 import withReduxStore from "../components/with-redux-store";
 import PageContainer from "../containers/page";
 
+require("isomorphic-fetch");
+
 class MyApp extends App {
   render() {
     const { Component, pageProps, reduxStore } = this.props;
