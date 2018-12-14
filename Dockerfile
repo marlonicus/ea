@@ -27,4 +27,4 @@ ENV PATH="./node_modules/.bin:$PATH"
 COPY --from=build /usr/src .
 
 # Start the server for Next.js using Node.js
-RUN node server.js
+CMD ["node", "server.js"]
