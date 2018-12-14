@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { identity, map } from "ramda";
 import Layout from "../components/layout";
+import env from "../utils/env";
 import { ModalsConsumer } from "../components/modals";
 
 const Jobs = ({ jobs }) => (
@@ -28,7 +29,7 @@ const Jobs = ({ jobs }) => (
 );
 
 Jobs.getInitialProps = async () => {
-  const jobs = await fetch(`${process.env.API_HOST}/api/jobs`);
+  const jobs = await fetch(`${env("API_HOST")}/api/jobs`);
   const json = await jobs.json();
   return { jobs: json };
 };

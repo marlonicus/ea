@@ -1,5 +1,6 @@
 import React from "react";
 import { map } from "ramda";
+import env from "../utils/env";
 import Layout from "../components/layout";
 
 const Scientists = ({ scientists }) => (
@@ -17,7 +18,7 @@ const Scientists = ({ scientists }) => (
 );
 
 Scientists.getInitialProps = async () => {
-  const jobs = await fetch(`${process.env.API_HOST}/api/scientists`);
+  const jobs = await fetch(`${env("API_HOST")}/api/scientists`);
   const json = await jobs.json();
   return { scientists: json };
 };

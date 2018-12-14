@@ -13,6 +13,7 @@ export default class MyDocument extends Document {
   }
 
   render() {
+    /* eslint-disable react/no-danger */
     return (
       <html lang="en">
         <Head>
@@ -20,10 +21,14 @@ export default class MyDocument extends Document {
           <script
             dangerouslySetInnerHTML={{
               __html: `
-              console.log("MARLON");
-              /* ${process.env.EA_AWS_ACCESS_KEY_ID} */
-              /* ${process.env.AWS_COGNITO_POOL_ID} */
-              /* ${process.env.API_HOST} */
+              window.env = {
+                AWS_COGNITO_APP_CLIENT_ID: "${
+                  process.env.AWS_COGNITO_APP_CLIENT_ID
+                }",
+                AWS_COGNITO_POOL_ID: "${process.env.AWS_COGNITO_POOL_ID}",
+                AWS_COGNITO_REGION: "${process.env.AWS_COGNITO_REGION}",
+                API_HOST: "${process.env.API_HOST}"
+              };
             `
             }}
           />

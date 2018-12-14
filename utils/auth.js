@@ -1,13 +1,16 @@
 const Amplify = require("aws-amplify").default;
+const env = require("./env");
 
 const { Auth } = Amplify;
+
+console.log("FOO", env)
 
 if (typeof window !== "undefined") {
   Amplify.configure({
     Auth: {
-      region: process.env.AWS_COGNITO_REGION,
-      userPoolId: process.env.AWS_COGNITO_POOL_ID,
-      userPoolWebClientId: process.env.AWS_COGNITO_APP_CLIENT_ID
+      region: env("AWS_COGNITO_REGION"),
+      userPoolId: env("AWS_COGNITO_POOL_ID"),
+      userPoolWebClientId: env("AWS_COGNITO_APP_CLIENT_ID")
     }
   });
 }
