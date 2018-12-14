@@ -12,7 +12,7 @@
     "DB_PASS": "@db-pass",
     "DB_HOST": "@db-host",
     "DB_NAME": "@db-name",
-    "AWS_ACCESS_KEY_ID": "@aws-key-id",
-    "AWS_ACCESS_SECRET": "@aws-access-secret"
+    "EA_AWS_ACCESS_KEY_ID": "@ea-aws-key-id",
+    "EA_AWS_ACCESS_SECRET": "@ea-aws-access-secret"
   }
 }

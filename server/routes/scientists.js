@@ -2,8 +2,8 @@ const AWS = require("aws-sdk");
 const { map, filter, prop, pipe, contains, propEq, unnest } = require("ramda");
 
 AWS.config = new AWS.Config({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_ACCESS_SECRET,
+  accessKeyId: process.env.EA_AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.EA_AWS_ACCESS_SECRET,
   region: process.env.AWS_COGNITO_REGION
 });
 
