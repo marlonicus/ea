@@ -3,8 +3,6 @@ const env = require("./env");
 
 const { Auth } = Amplify;
 
-console.log("FOO", env)
-
 if (typeof window !== "undefined") {
   Amplify.configure({
     Auth: {

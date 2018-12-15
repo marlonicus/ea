@@ -1,12 +1,37 @@
 import React from "react";
-import { Button } from "@smooth-ui/core-sc";
-import Link from "../../link";
-import { withProps } from "recompose";
+import styled from "styled-components";
+import NextLink from "next/link";
 
-const NavButton = ({ to, onClick, text }) => (
-  <Link href={to} onClick={onClick} as={Button}>
-    {text}
-  </Link>
-);
+const styles = `
+  color: white;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  padding: 1rem;
+
+  :hover {
+    color: grey;
+  }
+`;
+
+const StyledLink = styled.a`
+  ${styles};
+`;
+
+const StyledButton = styled.button`
+  ${styles};
+`;
+
+const NavButton = ({ onClick, children, ...props }) =>
+  onClick ? (
+    <StyledButton onClick={onClick} {...props}>
+      {children}
+    </StyledButton>
+  ) : (
+    <NextLink prefetch passHref {...props}>
+      <StyledLink>{children}</StyledLink>
+    </NextLink>
+  );
 
 export default NavButton;

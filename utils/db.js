@@ -3,9 +3,6 @@ require("now-env");
 const { prop } = require("ramda");
 const { MongoClient } = require("mongodb");
 
-console.log("1:", process.env.DB_USER);
-console.log("2:", process.env.API_HOST);
-
 // Connection URL
 const url = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${
   process.env.DB_HOST

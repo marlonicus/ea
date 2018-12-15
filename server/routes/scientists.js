@@ -35,7 +35,7 @@ module.exports = {
       };
       cognitoidentityserviceprovider.listUsers(params, (err, data) => {
         if (err) {
-          console.log(err, err.stack);
+          console.error(err, err.stack);
           reject(err);
         } else {
           resolve(transformCognitoUsers(data));
