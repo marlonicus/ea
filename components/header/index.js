@@ -1,19 +1,30 @@
 import React from "react";
 import { Box } from "@smooth-ui/core-sc";
 import styled from "styled-components";
+import Link from "next/link";
 import Logo from "../logo";
 import NavButton from "./nav-button";
 
 const Container = styled.header`
   display: flex;
+  align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid black;
-  background: black;
+  background: #b1b1b1;
+  padding-right: 1em;
+`;
+
+const LogoLink = styled.a`
+  cursor: pointer;
 `;
 
 const Header = ({ onLoginClick, onJoinClick, onLogoutClick, isLoggedIn }) => (
   <Container>
-    <Logo />
+    <Link prefetch passHref href="/">
+      <LogoLink>
+        <Logo />
+      </LogoLink>
+    </Link>
 
     <Box display="flex">
       <NavButton href="/scientists">Scientists</NavButton>

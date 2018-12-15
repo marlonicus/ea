@@ -3,15 +3,16 @@ import styled from "styled-components";
 import NextLink from "next/link";
 
 const styles = `
-  color: white;
+  color: #333;
   background: transparent;
   cursor: pointer;
   border: none;
   text-decoration: none;
   padding: 1rem;
+  font-weight: bold;
 
   :hover {
-    color: grey;
+    color: #111;
   }
 `;
 
