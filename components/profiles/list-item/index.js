@@ -1,11 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { map } from "../../../utils/fp";
-
-const Container = styled.ol`
-  margin: 0;
-  padding: 0;
-`;
 
 const Item = styled.li`
   width: 100%;
@@ -31,15 +25,11 @@ const Title = styled.h4`
   padding: 0;
 `;
 
-const Profile = ({ name }) => (
-  <Item>
+const ProfileListItem = ({ name }, index) => (
+  <Item key={index}>
     <ProfileImage />
     <Title>{name}</Title>
   </Item>
 );
 
-const ProfilesList = ({ users }) => (
-  <Container>{map(Profile, users)}</Container>
-);
-
-export default ProfilesList;
+export default ProfileListItem;

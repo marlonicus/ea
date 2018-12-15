@@ -1,6 +1,7 @@
 import React from "react";
 import Document, { Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
+import ResetCSS from "../components/reset-css";
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
@@ -17,6 +18,7 @@ export default class MyDocument extends Document {
     return (
       <html lang="en">
         <Head>
+          <ResetCSS />
           {this.props.styleTags}
           <script
             dangerouslySetInnerHTML={{
@@ -31,6 +33,11 @@ export default class MyDocument extends Document {
               };
             `
             }}
+          />
+
+          <link
+            href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css"
+            rel="stylesheet"
           />
         </Head>
         <body>

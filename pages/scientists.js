@@ -2,12 +2,17 @@ import React from "react";
 import env from "../utils/env";
 import Layout from "../components/layout";
 import Hero from "../components/profiles/hero";
-import ProfilesTemplate from "../components/profiles/template";
+import FilterableList from "../components/filterable-list";
+import ProfilesListItem from "../components/profiles/list-item";
 
 const Scientists = ({ users }) => (
   <Layout>
     <Hero image="/static/scientists-hero.gif" title="Meet the scientists!" />
-    <ProfilesTemplate users={users} type="Scientists" />
+    <FilterableList
+      listItems={users}
+      title="Scientist Profiles"
+      ListItemComponent={ProfilesListItem}
+    />
   </Layout>
 );
 
