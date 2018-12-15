@@ -1,21 +1,13 @@
 import React from "react";
-import { map } from "ramda";
 import env from "../utils/env";
 import Layout from "../components/layout";
 import Hero from "../components/profiles/hero";
+import ProfilesTemplate from "../components/profiles/template";
 
-const Scientists = ({ scientists }) => (
+const Scientists = ({ scientists: users }) => (
   <Layout>
     <Hero image="/static/scientists-hero.gif" title="Meet the scientists!" />
-
-    <ul>
-      {map(
-        name => (
-          <li>{name}</li>
-        ),
-        scientists
-      )}
-    </ul>
+    <ProfilesTemplate users={users} type="Scientists" />
   </Layout>
 );
 
