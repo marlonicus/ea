@@ -6,7 +6,7 @@ import { ModalsProvider, Modals } from "../modals";
 const GlobalStyle = createGlobalStyle`
   ${globalStyle()}
   #__next {
-    background: black;
+    background: white;
     height: 100vh;
     width: 100vw;
   }

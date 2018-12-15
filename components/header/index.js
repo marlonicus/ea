@@ -9,7 +9,6 @@ const Container = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid black;
   background: #b1b1b1;
   padding-right: 1em;
 `;

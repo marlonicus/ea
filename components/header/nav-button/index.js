@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import NextLink from "next/link";
+import Link from "next/link";
 
 const styles = `
   color: #333;
@@ -30,9 +30,9 @@ const NavButton = ({ onClick, children, ...props }) =>
       {children}
     </StyledButton>
   ) : (
-    <NextLink prefetch passHref {...props}>
+    <Link prefetch passHref {...props}>
       <StyledLink>{children}</StyledLink>
-    </NextLink>
+    </Link>
   );
 
 export default NavButton;
