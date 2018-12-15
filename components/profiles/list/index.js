@@ -31,7 +31,7 @@ const Title = styled.h4`
   padding: 0;
 `;
 
-const Profile = name => (
+const Profile = ({ name }) => (
   <Item>
     <ProfileImage />
     <Title>{name}</Title>

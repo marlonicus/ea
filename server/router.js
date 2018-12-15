@@ -1,6 +1,6 @@
 const Router = require("koa-router");
 const jobs = require("./routes/jobs");
-const scientists = require("./routes/scientists");
+const profiles = require("./routes/profiles");
 
 module.exports = ({ app }) => {
   const router = new Router();
@@ -14,8 +14,8 @@ module.exports = ({ app }) => {
     ctx.body = await jobs.get();
   });
 
-  router.get("/api/scientists", async ctx => {
-    ctx.body = await scientists.get();
+  router.get("/api/profiles/:type", async ctx => {
+    ctx.body = await profiles.get({ type: ctx.params.type });
   });
 
   router.get("*", async ctx => {

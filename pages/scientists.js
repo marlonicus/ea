@@ -4,7 +4,7 @@ import Layout from "../components/layout";
 import Hero from "../components/profiles/hero";
 import ProfilesTemplate from "../components/profiles/template";
 
-const Scientists = ({ scientists: users }) => (
+const Scientists = ({ users }) => (
   <Layout>
     <Hero image="/static/scientists-hero.gif" title="Meet the scientists!" />
     <ProfilesTemplate users={users} type="Scientists" />
@@ -12,9 +12,9 @@ const Scientists = ({ scientists: users }) => (
 );
 
 Scientists.getInitialProps = async () => {
-  const jobs = await fetch(`${env("API_HOST")}/api/scientists`);
+  const jobs = await fetch(`${env("API_HOST")}/api/profiles/scientist`);
   const json = await jobs.json();
-  return { scientists: json };
+  return { users: json };
 };
 
 export default Scientists;

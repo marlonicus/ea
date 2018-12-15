@@ -9,26 +9,26 @@ AWS.config = new AWS.Config({
 
 const cognitoidentityserviceprovider = new AWS.CognitoIdentityServiceProvider();
 
-const transformCognitoUsers = pipe(
-  prop("Users"),
-  map(prop("Attributes")),
+const transformCognitoUsers = type =>
+  pipe(
+    prop("Users"),
+    map(prop("Attributes")),
 
-  // Only get scientists
-  filter(
-    contains({
-      Name: "custom:role",
-      Value: "scientist"
-    })
-  ),
+    filter(
+      contains({
+        Name: "custom:role",
+        Value: type /* @TODO: Type check this for scientist or artist only */
+      })
+    ),
 
-  // Only need their names
-  map(filter(propEq("Name", "name"))),
-  unnest,
-  map(prop("Value"))
-);
+    // Only need their names
+    map(filter(propEq("Name", "name"))),
+    unnest,
+    map(x => ({ name: x.Value }))
+  );
 
 module.exports = {
-  get: async () =>
+  get: async ({ type }) =>
     new Promise((resolve, reject) => {
       const params = {
         UserPoolId: process.env.AWS_COGNITO_POOL_ID
@@ -38,7 +38,7 @@ module.exports = {
           console.error(err, err.stack);
           reject(err);
         } else {
-          resolve(transformCognitoUsers(data));
+          resolve(transformCognitoUsers(type)(data));
         }
       });
     })
