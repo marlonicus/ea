@@ -9,7 +9,7 @@ const Container = styled.section`
 `;
 
 const MaxWidth = styled.div`
-  max-width: 1440px;
+  max-width: 1024px;
   display: flex;
   padding: 3em;
   justify-content: center;
@@ -17,7 +17,7 @@ const MaxWidth = styled.div`
 
 const TextContainer = styled.article`
   position: relative;
-  flex: 0.7;
+  flex: 0.5;
   padding: 0 2em;
   display: flex;
   flex-direction: column;

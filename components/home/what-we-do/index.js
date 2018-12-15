@@ -24,7 +24,9 @@ const WhatWeDo = () => (
     <Text>
       We bring scientists and artists together for collaborative work.
     </Text>
-    <CTA href="/jobs">View jobs</CTA>
+    <CTA href="/jobs" padding>
+      View jobs
+    </CTA>
   </Container>
 );
 

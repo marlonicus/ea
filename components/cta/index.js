@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Link from "next/link";
 
 const StyledLink = styled.a`
-  padding: 1em 2em;
+  padding: 1em ${({ padding }) => (padding ? "1.5em" : "0")};
   cursor: pointer;
   border: 1px solid black;
   display: inline-block;
@@ -14,9 +14,9 @@ const StyledLink = styled.a`
   }
 `;
 
-const CTA = ({ children, ...props }) => (
+const CTA = ({ children, padding, ...props }) => (
   <Link prefetch {...props}>
-    <StyledLink>{children}</StyledLink>
+    <StyledLink padding={padding}>{children}</StyledLink>
   </Link>
 );
 
