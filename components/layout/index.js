@@ -9,6 +9,11 @@ const GlobalStyle = createGlobalStyle`
     background: white;
     height: 100vh;
     width: 100vw;
+    overflow-x: hidden;
+  }
+
+  *, *:before, *:after {
+    box-sizing: border-box;
   }
 `;
 
