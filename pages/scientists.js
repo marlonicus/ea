@@ -2,10 +2,12 @@ import React from "react";
 import { map } from "ramda";
 import env from "../utils/env";
 import Layout from "../components/layout";
+import Hero from "../components/profiles/hero";
 
 const Scientists = ({ scientists }) => (
   <Layout>
-    <h1>Scientists</h1>
+    <Hero image="/static/scientists-hero.gif" title="Meet the scientists!" />
+
     <ul>
       {map(
         name => (

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Hero = styled.section`
+const Container = styled.section`
   background: #000 url("/static/hero.gif") center center / cover no-repeat;
   color: white;
   height: 360px;
@@ -22,11 +22,11 @@ const Subtitle = styled.h2`
   padding: 0;
 `;
 
-const EAHero = () => (
-  <Hero>
+const Hero = () => (
+  <Container>
     <Title>ExplainArtist</Title>
     <Subtitle>Create. Share. Learn.</Subtitle>
-  </Hero>
+  </Container>
 );
 
-export default EAHero;
+export default Hero;
