@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import Link from "next/link";
 
 const Item = styled.li`
   width: 100%;
   background: #e9f3fe;
+  position: relative;
   list-style: none;
   margin: 0;
   margin-bottom: 1em;
@@ -33,10 +35,27 @@ const Title = styled.h4`
   padding: 0;
 `;
 
+const StyledLink = styled.a`
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  text-indent: -999px;
+`;
+
+const OverlayLink = ({ children, ...props }) => (
+  <Link prefetch scroll passHref {...props}>
+    <StyledLink>{children}</StyledLink>
+  </Link>
+);
+
 const Body = styled.p``;
 
-const JobsListItem = ({ title, description }, index) => (
-  <Item key={index}>
+const JobsListItem = ({ title, description, _id }) => (
+  <Item key={_id}>
+    <OverlayLink href={`/jobs/open/${_id}`}>{title}</OverlayLink>
+
     <Content>
       <Title>{title}</Title>
       <Body>{description}</Body>

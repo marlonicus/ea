@@ -6,6 +6,10 @@ module.exports = ({ app }) => {
   const router = new Router();
   const handle = app.getRequestHandler();
 
+  router.get("/api/jobs/:id", async ctx => {
+    ctx.body = await jobs.getById({ id: ctx.params.id });
+  });
+
   router.post("/api/jobs", async ctx => {
     ctx.body = await jobs.post({ ctx });
   });
@@ -16,6 +20,11 @@ module.exports = ({ app }) => {
 
   router.get("/api/profiles/:type", async ctx => {
     ctx.body = await profiles.get({ type: ctx.params.type });
+  });
+
+  router.get("/jobs/open/:id", async ctx => {
+    await app.render(ctx.req, ctx.res, "/jobs/open/_id", ctx.params);
+    ctx.respond = false;
   });
 
   router.get("*", async ctx => {

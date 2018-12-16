@@ -1,3 +1,4 @@
+const { ObjectID } = require("mongodb");
 const { verifyIsScientist } = require("../../utils/jwt");
 const { db } = require("../../utils/db");
 
@@ -8,6 +9,11 @@ module.exports = {
       .find()
       .toArray(),
 
+  getById: ({ id }) =>
+    db()
+      .collection("jobs")
+      .findOne({ _id: ObjectID(id) }),
+
   post: async ({ ctx }) => {
     const {
       title,
@@ -17,6 +23,8 @@ module.exports = {
       description,
       requirements
     } = ctx.request.body;
+
+    // @TODO: Sanitise these inputs
 
     try {
       await verifyIsScientist({ ctx });
