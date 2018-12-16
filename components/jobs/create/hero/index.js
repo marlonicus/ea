@@ -17,6 +17,10 @@ const ImageBase = `
   border: 2px solid #ccc;
   border-radius: 50%;
   text-align: center;
+
+  :first-child {
+    margin-right: -20px;
+  }
 `;
 
 const Image = styled.img`
@@ -26,8 +30,8 @@ const Image = styled.img`
 
 const QuestionMark = styled.div`
   ${ImageBase};
-  margin-right: -20px;
   background: transparent;
+  z-index: 1;
 
   :before {
     content: "?";
@@ -41,7 +45,6 @@ const QuestionMark = styled.div`
 
 const ProfileImagesContainer = styled.div`
   display: flex;
-  flex-direction: row-reverse;
 `;
 
 const Title = styled.h2`
@@ -52,11 +55,11 @@ const Subtitle = styled.h3`
   color: white;
 `;
 
-const JobsHero = ({ title = "New project", subtitle }) => (
+const JobsHero = ({ title = "New project", subtitle, images }) => (
   <Container>
     <ProfileImagesContainer>
-      <Image />
-      <QuestionMark />
+      {images[0] ? <Image /> : <QuestionMark />}
+      {images[1] ? <Image /> : <QuestionMark />}
     </ProfileImagesContainer>
 
     <Title>{title}</Title>

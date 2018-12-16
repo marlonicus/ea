@@ -1,7 +1,29 @@
 import React from "react";
+import { connect } from "react-redux";
+import { identity } from "ramda";
+import Layout from "../../../components/layout";
+import Hero from "../../../components/jobs/create/hero";
+import SingleJob from "../../../components/jobs/single";
 import env from "../../../utils/env";
 
-const JobView = () => <h1>Hello world</h1>;
+const JobView = ({
+  title,
+  field,
+  description,
+  location,
+  requirements,
+  deadline
+}) => (
+  <Layout>
+    <Hero title={title} subtitle={field} images={[true, false]} />
+    <SingleJob
+      description={description}
+      location={location}
+      requirements={requirements}
+      deadline={deadline}
+    />
+  </Layout>
+);
 
 JobView.getInitialProps = async ({ query }) => {
   const job = await fetch(`${env("API_HOST")}/api/jobs/${query.id}`);
@@ -9,4 +31,4 @@ JobView.getInitialProps = async ({ query }) => {
   return json;
 };
 
-export default JobView;
+export default connect(identity)(JobView);

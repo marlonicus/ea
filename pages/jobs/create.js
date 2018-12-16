@@ -7,7 +7,7 @@ import Form from "../../containers/create-job";
 
 const Jobs = () => (
   <Layout>
-    <Hero />
+    <Hero images={[false, true]} />
     <Form />
   </Layout>
 );
