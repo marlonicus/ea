@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { identity } from "ramda";
 import Layout from "../../components/layout";
 import Hero from "../../components/jobs/create/hero";
-import Form from "../../components/jobs/create/form";
+import Form from "../../containers/create-job";
 
 const Jobs = () => (
   <Layout>

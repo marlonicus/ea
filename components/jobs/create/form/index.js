@@ -63,7 +63,11 @@ const CreateJob = ({ onSubmit }) => (
   <Formik
     initialValues={{
       title: "",
-      description: ""
+      field: "",
+      location: "",
+      deadline: "",
+      description: "",
+      requirements: ""
     }}
     validationSchema={CreateJobSchema}
     onSubmit={async (values, actions) => {
@@ -116,7 +120,7 @@ const CreateJob = ({ onSubmit }) => (
           />
 
           <EnhancedFormGroup
-            name="content"
+            name="description"
             label="Content of project"
             InputComponent={EnhancedTextArea}
             height="100"

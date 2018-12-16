@@ -9,14 +9,28 @@ module.exports = {
       .toArray(),
 
   post: async ({ ctx }) => {
-    const { title, description } = ctx.request.body;
+    const {
+      title,
+      field,
+      location,
+      deadline,
+      description,
+      requirements
+    } = ctx.request.body;
 
     try {
       await verifyIsScientist({ ctx });
 
       await db()
         .collection("jobs")
-        .insertOne({ title, description });
+        .insertOne({
+          title,
+          field,
+          location,
+          deadline,
+          description,
+          requirements
+        });
 
       return "Job posted";
     } catch (e) {

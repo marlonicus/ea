@@ -6,16 +6,10 @@ import { createJob } from "../../utils/client-api";
 
 const transformApiErrorsToObject = apiErrors => apiErrors.message;
 
-const loginHandler = async ({
-  title,
-  description,
-  successHandler,
-  loggedInUser
-}) => {
+const submitHandler = async ({ successHandler, loggedInUser, fields }) => {
   try {
     await createJob({
-      title,
-      description,
+      fields,
       loggedInUser
     });
 
@@ -31,9 +25,7 @@ const loginHandler = async ({
 
 const CreateJobContainer = ({ successHandler = () => {}, loggedInUser }) => (
   <CreateJob
-    onSubmit={({ title, description }) =>
-      loginHandler({ title, description, successHandler, loggedInUser })
-    }
+    onSubmit={fields => submitHandler({ successHandler, loggedInUser, fields })}
   />
 );
 
