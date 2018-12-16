@@ -9,9 +9,13 @@ const CreateJobSchema = Yup.object().shape({
     .min(3, "Try and be a little more descriptive here")
     .required("Your project neeeds a title"),
 
-  description: Yup.string()
+  field: Yup.string()
     .min(3, "Try and be a little more descriptive here")
-    .required("Your project neeeds a description")
+    .required("Your project neeeds a field"),
+
+  location: Yup.string()
+    .min(2, "Must be at least 2 characters long")
+    .required("Where is the project located?")
 });
 
 const CreateJob = ({ onSubmit }) => (
@@ -35,16 +39,25 @@ const CreateJob = ({ onSubmit }) => (
       <Form>
         <EnhancedFormGroup
           name="title"
-          label="Title"
+          label="Project Title"
           setFieldValue={setFieldValue}
           setFieldTouched={setFieldTouched}
-          placeholder="The name of your project"
+          placeholder=""
           disabled={isSubmitting}
         />
 
         <EnhancedFormGroup
-          name="description"
-          label="Description of scope"
+          name="field"
+          label="Field of research/topic"
+          setFieldValue={setFieldValue}
+          setFieldTouched={setFieldTouched}
+          placeholder=""
+          disabled={isSubmitting}
+        />
+
+        <EnhancedFormGroup
+          name="location"
+          label="Location"
           setFieldValue={setFieldValue}
           setFieldTouched={setFieldTouched}
           placeholder=""

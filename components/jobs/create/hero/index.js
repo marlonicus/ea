@@ -8,31 +8,59 @@ const Container = styled.section`
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
+  padding: 2rem;
 `;
 
-const Image = styled.img`
-  padding: 4rem 0;
-  width: 300px;
-`;
-
-const QuestionMark = styled.div`
+const ImageBase = `
   width: 100px;
   height: 100px;
-  background: transparent;
   border: 2px solid #ccc;
   border-radius: 50%;
   text-align: center;
+`;
+
+const Image = styled.img`
+  background: #333;
+  ${ImageBase};
+`;
+
+const QuestionMark = styled.div`
+  ${ImageBase};
+  margin-right: -20px;
+  background: transparent;
 
   :before {
     content: "?";
     display: block;
+    color: #ccc;
+    font-size: 50px;
+    line-height: 100px;
+    vertical-align: middle;
   }
 `;
 
-const JobsHero = () => (
+const ProfileImagesContainer = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+`;
+
+const Title = styled.h2`
+  color: white;
+`;
+
+const Subtitle = styled.h3`
+  color: white;
+`;
+
+const JobsHero = ({ title = "New project", subtitle }) => (
   <Container>
-    <QuestionMark />
-    <Image src="/static/jobs-hero.gif" />
+    <ProfileImagesContainer>
+      <Image />
+      <QuestionMark />
+    </ProfileImagesContainer>
+
+    <Title>{title}</Title>
+    <Subtitle>{subtitle}</Subtitle>
   </Container>
 );
 
