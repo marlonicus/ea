@@ -3,26 +3,19 @@ import { connect } from "react-redux";
 import { identity } from "ramda";
 import Layout from "../../components/layout";
 import env from "../../utils/env";
-import { ModalsConsumer } from "../../components/modals";
 import FilterableList from "../../components/filterable-list";
 import JobsListItem from "../../components/jobs/list-item";
-import Hero from "../../components/jobs/hero";
+import Hero from "../../components/jobs/open/hero";
+import CTA from "../../components/cta";
 
 const Jobs = ({ jobs }) => (
   <Layout>
     <Hero />
-    <FilterableList
-      listItems={jobs}
-      title=""
-      ListItemComponent={JobsListItem}
-    />
-    <ModalsConsumer>
-      {({ showModal }) => (
-        <button type="button" onClick={() => showModal("create-job")}>
-          Create job
-        </button>
-      )}
-    </ModalsConsumer>
+    <FilterableList listItems={jobs} title="" ListItemComponent={JobsListItem}>
+      <CTA href="/jobs/create" padding>
+        Start a project
+      </CTA>
+    </FilterableList>
   </Layout>
 );
 

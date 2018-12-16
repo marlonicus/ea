@@ -30,7 +30,7 @@ const NavButton = ({ onClick, children, ...props }) =>
       {children}
     </StyledButton>
   ) : (
-    <Link prefetch passHref {...props}>
+    <Link prefetch scroll passHref {...props}>
       <StyledLink>{children}</StyledLink>
     </Link>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { identity } from "ramda";
-import CreateJob from "../../components/create-job";
+import CreateJob from "../../components/jobs/create/form";
 import { createJob } from "../../utils/client-api";
 
 const transformApiErrorsToObject = apiErrors => apiErrors.message;

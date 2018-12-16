@@ -42,9 +42,11 @@ const StyledLink = styled.a`
 `;
 
 const NavLink = ({ children, ...props }) => (
-  <Link prefetch passHref {...props}>
-    <StyledLink>{children}</StyledLink>
-  </Link>
+  <NavListItem>
+    <Link prefetch passHref {...props}>
+      <StyledLink>{children}</StyledLink>
+    </Link>
+  </NavListItem>
 );
 
 const Image = styled.img`
@@ -56,13 +58,8 @@ const JobsHero = () => (
   <Container>
     <Image src="/static/jobs-hero.gif" />
     <NavList>
-      <NavListItem>
-        <NavLink href="/jobs">Open Jobs</NavLink>
-      </NavListItem>
-
-      <NavListItem>
-        <NavLink href="/jobs/archive">Archive</NavLink>
-      </NavListItem>
+      <NavLink href="/jobs">Open Jobs</NavLink>
+      <NavLink href="/jobs/archive">Archive</NavLink>
     </NavList>
   </Container>
 );

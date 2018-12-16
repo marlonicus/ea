@@ -29,7 +29,7 @@ const List = styled.ol`
 
 const Title = styled.h2``;
 
-const FilterableList = ({ title, listItems, ListItemComponent }) => (
+const FilterableList = ({ title, listItems, ListItemComponent, children }) => (
   <Container>
     <MaxWidth>
       <FilterContainer>
@@ -38,6 +38,7 @@ const FilterableList = ({ title, listItems, ListItemComponent }) => (
       <ListContainer>
         <Title>{title}</Title>
         <List>{map(ListItemComponent, listItems)}</List>
+        {children}
       </ListContainer>
     </MaxWidth>
   </Container>

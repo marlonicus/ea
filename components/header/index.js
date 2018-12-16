@@ -2,7 +2,7 @@ import React from "react";
 import { Box } from "@smooth-ui/core-sc";
 import styled from "styled-components";
 import Link from "next/link";
-import Logo from "../logo";
+import Logo from "./logo";
 import NavButton from "./nav-button";
 
 const Container = styled.header`

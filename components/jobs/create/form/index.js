@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Alert } from "@smooth-ui/core-sc";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import EnhancedFormGroup from "../form/group";
+import EnhancedFormGroup from "../../../form/group";
 
 const CreateJobSchema = Yup.object().shape({
   title: Yup.string()

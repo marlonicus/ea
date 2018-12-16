@@ -34,11 +34,6 @@ export default class MyDocument extends Document {
             `
             }}
           />
-
-          <link
-            href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css"
-            rel="stylesheet"
-          />
         </Head>
         <body>
           <Main />

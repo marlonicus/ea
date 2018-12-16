@@ -1,16 +1,17 @@
 import React from "react";
 import { globalStyle, createGlobalStyle } from "@smooth-ui/core-sc";
 import HeaderContainer from "../../containers/header";
-import { ModalsProvider, Modals } from "../modals";
+import { ModalsProvider, Modals } from "../../containers/modals";
 
 const GlobalStyle = createGlobalStyle`
   ${globalStyle()}
-  
+
   #__next {
     background: white;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     overflow-x: hidden;
+    overflow-y: visible;
   }
 
   *, *:before, *:after {

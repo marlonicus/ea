@@ -8,6 +8,7 @@ const StyledLink = styled.a`
   border: 1px solid black;
   display: inline-block;
   text-align: center;
+  text-decoration: none;
 
   :hover {
     background: #ccc;
@@ -15,7 +16,7 @@ const StyledLink = styled.a`
 `;
 
 const CTA = ({ children, padding, ...props }) => (
-  <Link prefetch {...props}>
+  <Link scroll prefetch passHref {...props}>
     <StyledLink padding={padding}>{children}</StyledLink>
   </Link>
 );

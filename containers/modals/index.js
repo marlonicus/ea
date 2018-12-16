@@ -10,9 +10,9 @@ import {
   ModalCloseButton
 } from "@smooth-ui/core-sc";
 
-import JoinContainer from "../../containers/join";
-import LoginContainer from "../../containers/login";
-import CreateJobContainer from "../../containers/create-job";
+import JoinContainer from "../join";
+import LoginContainer from "../login";
+import CreateJobContainer from "../create-job";
 
 const ModalsContext = React.createContext();
 
