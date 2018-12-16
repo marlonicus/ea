@@ -31,18 +31,32 @@ const LeftContainer = styled.div`
 
 const RightContainer = styled.div`
   flex: 1;
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const FormContainer = styled(Form)`
   display: flex;
+  flex-wrap: wrap;
   padding: 2rem 4rem;
   max-width: 1024px;
   justify-content: center;
   margin: 0 auto;
 `;
 
-const EnhancedTextArea = styled(withProps({ as: "textarea"})(Textarea))`
-  height: 200px;
+const SubmitContainer = styled.div`
+  flex: 0 1 100%;
+  text-align: right;
+  width: 100%;
+`;
+
+const SubmitButton = styled(Button)`
+  display: inline-block;
+`;
+
+const EnhancedTextArea = styled(withProps({ as: "textarea" })(Textarea))`
+  height: ${({ height }) => height}px;
 `;
 
 const CreateJob = ({ onSubmit }) => (
@@ -105,6 +119,7 @@ const CreateJob = ({ onSubmit }) => (
             name="content"
             label="Content of project"
             InputComponent={EnhancedTextArea}
+            height="100"
             setFieldValue={setFieldValue}
             setFieldTouched={setFieldTouched}
             placeholder="Roughly summarise what your research project is about."
@@ -116,6 +131,7 @@ const CreateJob = ({ onSubmit }) => (
           <EnhancedFormGroup
             name="requirements"
             label="What I'm looking for"
+            height="300"
             InputComponent={EnhancedTextArea}
             setFieldValue={setFieldValue}
             setFieldTouched={setFieldTouched}
@@ -127,16 +143,12 @@ Communication is key.`}
           />
 
           {status && <Alert>{status}</Alert>}
-
-          <Button
-            type="submit"
-            mx="auto"
-            display="block"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? "Publishing..." : "Publish project"}
-          </Button>
         </RightContainer>
+        <SubmitContainer>
+          <SubmitButton type="submit" mx="auto" disabled={isSubmitting}>
+            {isSubmitting ? "Publishing..." : "Publish project"}
+          </SubmitButton>
+        </SubmitContainer>
       </FormContainer>
     )}
   </Formik>
