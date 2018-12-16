@@ -4,8 +4,8 @@ import { identity } from "ramda";
 import Layout from "../../components/layout";
 import env from "../../utils/env";
 import FilterableList from "../../components/filterable-list";
-import JobsListItem from "../../components/jobs/list-item";
-import Hero from "../../components/jobs/open/hero";
+import JobsListItem from "../../components/jobs/list/list-item";
+import Hero from "../../components/jobs/list/hero";
 
 const Jobs = ({ jobs }) => (
   <Layout>
